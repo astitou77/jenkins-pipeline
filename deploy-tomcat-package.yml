@@ -1,0 +1,22 @@
+---
+- name: Deploy *.war file from Artifactory into tomcat
+  hosts: tomcat_servers
+  become: yes
+
+  tasks:
+    - name: Stop Tomcat
+      shell: "/appdata/apache-tomcat-9.0.87-LastNameApp"
+      ignore_errors: yes  # In case Tomcat is not running, prevent the playbook from failing
+
+    - name: Wait for Tomcat to shut down
+      wait_for:
+        path: "/appdata/apache-tomcat-9.0.87-LastNameApp/logs/catalina.out"
+        search_regex: "Destroying ProtocolHandler"
+        delay: 5
+        timeout: 60
+
+    - name: Download *.war file from Artifactory
+      get_url:
+        url: ""
+        dest: "/appdata/apache-tomcat-9.0.87-LastNameApp/loool.war"
+        force: yes

@@ -5,6 +5,13 @@ pipeline {
 		stage('Hello World'){
 			steps{
 				echo 'Hello From Github !!!!'
+				sh '''
+					ansible --version
+					ansible-playbook --version
+					ansible-galaxy --version
+				'''
+				// sh 'ansible-playbook -i inventory.ini --private-key=$ANSIBLE_PRIVATE_KEY deploy-tomcat-package.yml'
+
 			}
 		}
 	}
