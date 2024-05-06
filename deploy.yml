@@ -1,0 +1,17 @@
+---
+- name: Deploy Latest war release to Apache Tomcat
+  hosts: tomcat_servers
+
+  tasks:
+    - name: Stop Apache Tomcat service
+      become: yes
+      systemd:
+        name: tomcat
+        state: stopped
+    - name: Download the latest WAR from JFrog Artifactory
+      ansible.builtin.get_url:
+        url: http://172.16.25.139:8082/artifactory/my-repo/Hello-World-Project/HelloWorld.war
+        dest: "/tmp/HelloWorld.war"
+    - name: Remove the existing WAR file from Tomcat webapps
+      file:
+        path: "http://appdata/apache-tomcat-9.0.87-LastNameApp/webapps/HelloWorld.war"

@@ -20,7 +20,17 @@ pipeline {
 
 	stage('Step#2: Call Ansible Playbook'){
 	    steps{
-		echo 'Ansible Playbook is here ? :)'
+		echo 'Ansible Playbook running...'
+		
+		// Clone repo
+		git https://github.com/astitou77/LastNameProject.git
+
+		// Execute Ansible Playbook
+		ansiblePlaybook(
+		    playbook: 'deploy.xml',
+		    inventory: 'inventory2.ini'
+		    
+		)
 	    }
 	}
 
