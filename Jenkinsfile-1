@@ -1,19 +1,29 @@
 pipeline {
+
     agent any
+
     stages {
-	stage('Hello World'){
+
+	stage('Step#1: Ansible Version Check'){
 	    steps{
 
-	        echo 'Hello From Github !!!! ADNANEEEEEEEE !!!!!!'
+	        echo 'Ansible version installed is:'
 		sh '''
 		ansible --version
 		ansible-playbook --version
 		ansible-galaxy --version
 		'''
-		// sh 'ansible-playbook -i inventory.ini --private-key=$ANSIBLE_PRIVATE_KEY deploy-tomcat-package.yml'
+		// sh 'ansible-playbook -i inventoriy.ini --private-key=$ANSIBLE_PRIVATE_KEY deploy-tomcat-package.yml'
 
-		}
+	    }
 	}
+
+	stage('Step#2: Call Ansible Playbook'){
+	    steps{
+		echo 'Ansible Playbook is here ? :)'
+	    }
+	}
+
     }
 
 
