@@ -28,7 +28,7 @@ pipeline {
 
 		// Execute Ansible Playbook
 		ansiblePlaybook(
-		    playbook: 'deploy.xml',
+		    playbook: 'deploy.yml',
 		    inventory: 'inventory2.ini'
 		    
 		)
