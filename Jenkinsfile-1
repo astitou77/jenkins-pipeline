@@ -27,11 +27,11 @@ pipeline {
 		git 'https://github.com/astitou77/LastNameProject.git'
 
 		// Execute Ansible Playbook
-		// ansiblePlaybook(
-		    // playbook: 'deploy.xml',
-		    // inventory: 'inventory2.ini'
+		ansiblePlaybook(
+		    playbook: 'deploy.xml',
+		    inventory: 'inventory2.ini'
 		    
-		// )
+		)
 	    }
 	}
 
